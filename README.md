@@ -36,8 +36,23 @@ Karakteristik data:
   ![Screenshot 2024-08-19 152543](https://github.com/user-attachments/assets/da89f7fe-2c01-4704-a234-b97dd9517029)
 
 - Hasil worldcloud pada text seperti berikut, dapat dilihat terdapat kata-kata umum, seperti 'sorry', 'love', 'come', yang terdapat pada pesan sehari-hari
+
 ![download](https://github.com/user-attachments/assets/39142049-789b-41a3-8f08-375ad938d8c3)
 
 ## Data Preparation
 - Dilakukan proses split data menjadi data train dan data test dengan rasio pembagian 80:20. Sehingga jumlah data train sebesar 4457 data dan test sebesar 1115 data.
-- 
+- Menggunakan fungsi TF-IDF pada atribut 'Message' untuk menentukan pentingnya kata dalam konteks pesan tertentu dengan memperhitungkan keunikan kata tersebut di seluruh corpus. Misalnya, kata-kata umum seperti "dan", "adalah", "atau" sering muncul di hampir setiap pesan dan tidak banyak membantu dalam membedakan antara spam dan non-spam. TF-IDF memberikan bobot yang lebih rendah untuk kata-kata ini. Sebaliknya, kata-kata yang lebih jarang dan lebih spesifik yang mungkin mengindikasikan spam, seperti "penawaran", "gratis", atau "diskon", akan diberi bobot lebih tinggi oleh TF-IDF, membantu model untuk fokus pada kata-kata ini.
+- Menggabungkan hasil TF-IDF dengan fitur lain seperti panjang kata dan banyaknya tautan yang nantinya digunakan sebagai fitur untuk melatih model.
+
+## Model
+Model yang digunakan pada proyek ini adalah model SVM (Support Vector Machine) karena SVM sangat efektif dalam bekerja dengan data yang memiliki banyak fitur, seperti teks yang telah diolah dengan TF-IDF. Ini karena SVM mencoba menemukan hyperplane terbaik yang memisahkan kelas-kelas dalam ruang fitur berdimensi tinggi.
+
+## Evaluasi
+Model berperforma sangat baik seperti pada gambar di bawah
+
+![image](https://github.com/user-attachments/assets/3c78d447-872a-4171-8607-1c3a88637784)
+Hasil inferensi menggunakan text inputan, model dapat mengklasifikasikan email dengan baik
+
+![image](https://github.com/user-attachments/assets/bc721ba7-20ec-4f1c-bbc4-8e3fea19da57)
+
+
